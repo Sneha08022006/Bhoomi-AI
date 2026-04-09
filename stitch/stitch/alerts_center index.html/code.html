@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#2b1c03",
+                    "on-secondary-container": "#5a647c",
+                    "surface-bright": "#f8faf9",
+                    "on-primary-fixed": "#002019",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#271902",
+                    "secondary-fixed": "#d7e2ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#e1e3e2",
+                    "secondary-fixed-dim": "#bbc6e2",
+                    "inverse-on-surface": "#eff1f0",
+                    "primary-fixed": "#c7eade",
+                    "primary-container": "#1a3a32",
+                    "tertiary-fixed": "#fcdeb6",
+                    "primary": "#02241d",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#2d4d44",
+                    "tertiary-container": "#433115",
+                    "on-tertiary-fixed-variant": "#574426",
+                    "on-secondary-fixed": "#101b30",
+                    "surface-container-high": "#e6e9e8",
+                    "outline": "#717975",
+                    "surface-tint": "#45655b",
+                    "inverse-primary": "#abcec2",
+                    "surface-container-highest": "#e1e3e2",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#d7e2ff",
+                    "surface-container": "#eceeed",
+                    "on-tertiary-container": "#b29974",
+                    "inverse-surface": "#2e3131",
+                    "background": "#f8faf9",
+                    "on-background": "#191c1c",
+                    "outline-variant": "#c1c8c4",
+                    "surface-dim": "#d8dad9",
+                    "on-surface": "#191c1c",
+                    "primary-fixed-dim": "#abcec2",
+                    "surface": "#f8faf9",
+                    "on-surface-variant": "#414846",
+                    "tertiary-fixed-dim": "#dec29b",
+                    "on-primary-container": "#82a499",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f2f4f3",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#545e76",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#3c475d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Public Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift-no-borders {
+            border: none !important;
+        }
+        .tonal-shift-logic {
+            border: none !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased">
+<!-- Side Navigation Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#eceeed] dark:bg-slate-900 flex flex-col h-full py-8 font-['Public_Sans'] tracking-tight transition-all">
+<div class="px-6 mb-10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary flex items-center justify-center rounded-sm">
+<span class="material-symbols-outlined text-white text-sm" data-icon="shield">shield</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tighter text-[#02241d] dark:text-white">Bhoomi-AI</h1>
+<p class="text-[10px] uppercase tracking-widest text-[#717975]">Sovereign Earth Intelligence</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-4 px-6 py-3 text-[#717975] hover:bg-[#e1e3e2] transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#717975] hover:bg-[#e1e3e2] transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="text-sm font-medium">Map Analysis</span>
+</a>
+<!-- Active State: Alerts -->
+<a class="flex items-center gap-4 px-6 py-3 text-[#02241d] font-bold border-r-4 border-[#02241d] bg-[#f2f4f3] active:scale-[0.98] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+<span class="text-sm">Alerts</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#717975] hover:bg-[#e1e3e2] transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#717975] hover:bg-[#e1e3e2] transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-6">
+<div class="bg-surface-container-highest p-4 rounded-lg flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-sm overflow-hidden">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="professional male administrator headshot with neutral background and sharp lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFgARQ-mBlsdecz5xCAEeV3_yNMXz9F0ORjZdFFoWshWaBvzMEJ1HWAYVpCxDniixN8ZJFpKuDjpKsyX4LIVkSKKOfXmkzoZXESSEsiOZkjTdus416HLEJL--Cbt3JqOqVAwQ45ZT5MCQOyjp3wYA_0_bGbLRiao5GUbCIaXHVSRMuB2zSESv7zG85gobpw9_Gdxe_OzzUP0TMsslU00R8A4x5GD1YCS4I3cRl8BTWMlp8TUJhd0ohRL00KTHanluS-r0DZVke_tI"/>
+</div>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">Admin Control</p>
+<p class="text-[10px] text-outline truncate">Sector 7 Authority</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-50 bg-[#f8faf9]/60 backdrop-blur-xl flex justify-between items-center px-12 shadow-sm font-['Inter'] font-medium">
+<div class="flex items-center bg-surface-container-low px-4 py-1.5 rounded-sm w-96">
+<span class="material-symbols-outlined text-outline text-sm mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none text-xs focus:ring-0 w-full placeholder:text-outline/50" placeholder="Search coordinates or alert IDs..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-[#717975] hover:text-[#02241d] transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-[#717975] hover:text-[#02241d] transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-6 w-px bg-outline-variant/30"></div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold uppercase tracking-wider text-primary">System Online</span>
+<div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-12 min-h-[calc(100vh-4rem)]">
+<!-- Hero Header Area -->
+<div class="mb-12">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary mb-2 block">Surveillance Command</span>
+<h2 class="text-5xl font-extrabold tracking-tighter text-primary font-headline mb-4">Alerts Center</h2>
+<p class="text-on-surface-variant max-w-2xl leading-relaxed">
+                Real-time satellite anomaly detection and terrestrial boundary monitoring. Action is required for <span class="text-error font-bold">14 critical violations</span> detected in the last 24 hours.
+            </p>
+</div>
+<!-- Filter & Control Bar -->
+<div class="flex flex-wrap items-end justify-between gap-6 mb-8">
+<div class="flex gap-8">
+<div class="flex flex-col gap-2">
+<label class="text-[10px] uppercase tracking-widest font-bold text-outline">Filter by Severity</label>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-primary text-white text-xs font-bold rounded-sm">All Alerts</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant text-xs font-medium hover:bg-surface-container-highest transition-colors rounded-sm">Critical</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant text-xs font-medium hover:bg-surface-container-highest transition-colors rounded-sm">Warning</button>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[10px] uppercase tracking-widest font-bold text-outline">Geographic Region</label>
+<select class="bg-transparent border-b border-outline/30 focus:border-primary border-t-0 border-x-0 text-xs font-medium py-2 pr-10 focus:ring-0">
+<option>All Global Sectors</option>
+<option>Amazon Basin - Sector A1</option>
+<option>Congo Basin - Sector B4</option>
+<option>South East Asia - Sector C2</option>
+</select>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-6 py-3 bg-surface-container-highest text-primary text-xs font-bold uppercase tracking-wider hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                    Export Dossier
+                </button>
+<button class="flex items-center gap-2 px-6 py-3 bg-primary text-white text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-all shadow-lg">
+<span class="material-symbols-outlined text-sm" data-icon="refresh">refresh</span>
+                    Scan New Imagery
+                </button>
+</div>
+</div>
+<!-- Alerts Dossier List -->
+<div class="space-y-6">
+<!-- Alert Card 1: Critical Encroachment -->
+<div class="group bg-surface-container-lowest flex flex-col md:flex-row gap-8 p-6 transition-all hover:bg-surface-container-high relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-error"></div>
+<div class="w-full md:w-64 h-40 bg-surface-container shrink-0 overflow-hidden rounded-sm grayscale group-hover:grayscale-0 transition-all duration-500">
+<img class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700" data-alt="high-resolution aerial satellite photo of tropical rainforest with a clear rectangular patch of deforestation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5eVZWI-rtg6ivEyCCS6wvsaNP9nGfJGy79Q06d7tHNJBHASiAD5b9D1gc47-DHwaHBVbfEJRPY5xR-5tbDV_OPL82dbBLyB47izK_sF_lhTsH7bu2yAHuKrmNg6pFtTO3N1jNYiH798B6iEhR46pM4dtqDDS9dGnt0Ilak1qTlMJ9fUFH019MsRPX4iZ8D3oJMCGMg6WprWHqt6SIx1n6Obc9ZPndqyx_ZBjaUGW0WCHR4uXOu3oNe-0iuzDoJn-A2dWZ1GzgeU4"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container text-[10px] font-extrabold uppercase tracking-tighter rounded-sm">Critical</span>
+<span class="text-[10px] font-mono text-outline">UID: AE-88291-TX</span>
+</div>
+<h3 class="text-xl font-bold tracking-tight text-primary mb-1">Unsanctioned Logging Operation</h3>
+<p class="text-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-xs" data-icon="location_on">location_on</span>
+                            2°14'45"S 54°52'11"W · Amazon Sector Alpha-7
+                        </p>
+</div>
+<div class="mt-4 flex flex-wrap gap-8">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Detected</p>
+<p class="text-xs font-medium">14:22 UTC · 12 Oct 2024</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Type</p>
+<p class="text-xs font-medium">Land Encroachment</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Confidence</p>
+<div class="flex items-center gap-2">
+<div class="w-16 h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[94%] h-full bg-primary"></div>
+</div>
+<span class="text-xs font-bold">94%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex md:flex-col justify-end gap-2 shrink-0">
+<button class="px-6 py-2 bg-primary text-white text-[10px] font-bold uppercase tracking-widest hover:opacity-90">Verify</button>
+<button class="px-6 py-2 bg-secondary text-white text-[10px] font-bold uppercase tracking-widest hover:opacity-90">Dispatch</button>
+<button class="px-6 py-2 bg-surface-container-highest text-primary text-[10px] font-bold uppercase tracking-widest hover:bg-outline-variant/30">Dismiss</button>
+</div>
+</div>
+<!-- Alert Card 2: System Anomaly -->
+<div class="group bg-surface-container-lowest flex flex-col md:flex-row gap-8 p-6 transition-all hover:bg-surface-container-high relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary-fixed"></div>
+<div class="w-full md:w-64 h-40 bg-surface-container shrink-0 overflow-hidden rounded-sm grayscale group-hover:grayscale-0 transition-all duration-500">
+<img class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700" data-alt="thermal imaging view of a mountainous region showing heat anomalies in bright orange against dark blue landscape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHOfmsb2zKyi-3SKQ3PYpc8240w2mFqFtWZi4rCENZcgoEonFa2CbWE9BSSDhpwM36mBkUiJ2EJ64xRhOWnxOKGdoJi0-xtu7yJE7r95uFWnowPOWUO-BtgsVGDHrLtZmZZaT3nWXki7pEOU9pL9sw4gAAnIOGWv66NciRe4_H_mUWyWIgBwSGedJfzWyed26UvyPa5JijTjnrAlzs40bXu69E7IDUUuXJ9PWuoGoZ5q_gXelyZiafBRBF935_FNYtaZJ9Drj3fPU"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-extrabold uppercase tracking-tighter rounded-sm">Warning</span>
+<span class="text-[10px] font-mono text-outline">UID: SY-44021-ZB</span>
+</div>
+<h3 class="text-xl font-bold tracking-tight text-primary mb-1">Subsurface Thermal Variance</h3>
+<p class="text-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-xs" data-icon="location_on">location_on</span>
+                            34°02'N 118°14'W · Sierra Highlands
+                        </p>
+</div>
+<div class="mt-4 flex flex-wrap gap-8">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Detected</p>
+<p class="text-xs font-medium">09:05 UTC · 12 Oct 2024</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Type</p>
+<p class="text-xs font-medium">System Anomaly</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Confidence</p>
+<div class="flex items-center gap-2">
+<div class="w-16 h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[72%] h-full bg-tertiary"></div>
+</div>
+<span class="text-xs font-bold">72%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex md:flex-col justify-end gap-2 shrink-0">
+<button class="px-6 py-2 bg-primary text-white text-[10px] font-bold uppercase tracking-widest">Verify</button>
+<button class="px-6 py-2 bg-secondary text-white text-[10px] font-bold uppercase tracking-widest">Dispatch</button>
+<button class="px-6 py-2 bg-surface-container-highest text-primary text-[10px] font-bold uppercase tracking-widest">Dismiss</button>
+</div>
+</div>
+<!-- Alert Card 3: New Boundary Development -->
+<div class="group bg-surface-container-lowest flex flex-col md:flex-row gap-8 p-6 transition-all hover:bg-surface-container-high relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-error"></div>
+<div class="w-full md:w-64 h-40 bg-surface-container shrink-0 overflow-hidden rounded-sm grayscale group-hover:grayscale-0 transition-all duration-500">
+<img class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700" data-alt="aerial drone photography of newly constructed dirt roads cutting through a dense green forest at dawn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNLJrz01Jn1AcvWSh8yCKgKVtznP-qtn8f9GwH_NmOebWpAFcUpC-JgQWL7ROqHFMyCqhLBh_1g97FGdA-f05vgV7PG7dEWJGiIsPecFzW7UCj-EbS9FAOnSAvB565OAdHC8Qr40b9vHojej2NUqVfQ8j_88gZz1ikMMvZnw_q9crGpKZd0ACw-aY5ImbtcJhahHytTLrcPc6HXv7jw1bB9nxJAaOvYTYSDl12aFmdsoawTJVLYWGV5nLYI_FGhRLfRTIVBY5swh8"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container text-[10px] font-extrabold uppercase tracking-tighter rounded-sm">Critical</span>
+<span class="text-[10px] font-mono text-outline">UID: AE-99001-RX</span>
+</div>
+<h3 class="text-xl font-bold tracking-tight text-primary mb-1">Illegal Road Network Expansion</h3>
+<p class="text-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-xs" data-icon="location_on">location_on</span>
+                            0°55'12"N 12°18'33"E · Gabon Basin
+                        </p>
+</div>
+<div class="mt-4 flex flex-wrap gap-8">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Detected</p>
+<p class="text-xs font-medium">04:12 UTC · 12 Oct 2024</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Type</p>
+<p class="text-xs font-medium">Land Encroachment</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-outline font-bold">Confidence</p>
+<div class="flex items-center gap-2">
+<div class="w-16 h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="w-[88%] h-full bg-primary"></div>
+</div>
+<span class="text-xs font-bold">88%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex md:flex-col justify-end gap-2 shrink-0">
+<button class="px-6 py-2 bg-primary text-white text-[10px] font-bold uppercase tracking-widest">Verify</button>
+<button class="px-6 py-2 bg-secondary text-white text-[10px] font-bold uppercase tracking-widest">Dispatch</button>
+<button class="px-6 py-2 bg-surface-container-highest text-primary text-[10px] font-bold uppercase tracking-widest">Dismiss</button>
+</div>
+</div>
+</div>
+<!-- Pagination Anchor -->
+<div class="mt-12 flex items-center justify-between py-6 border-t border-outline-variant/15">
+<p class="text-xs text-outline">Showing <span class="font-bold text-primary">3</span> of <span class="font-bold text-primary">142</span> global incidents</p>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-white text-xs font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors text-xs font-bold">2</button>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors text-xs font-bold">3</button>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="ml-64 w-[calc(100%-16rem)] py-6 mt-auto bg-[#f8faf9] flex justify-between items-center px-12 border-t border-[#c1c8c4]/15 font-['Inter'] text-[0.75rem] uppercase tracking-[0.05em] text-[#717975]">
+<div class="flex items-center gap-6">
+<span class="font-bold text-[#1a3a32] tracking-tighter">Bhoomi-AI</span>
+<span>© 2024 Bhoomi-AI Sovereign Intelligence. Restricted Access.</span>
+</div>
+<div class="flex gap-8">
+<a class="opacity-80 hover:opacity-100 hover:text-[#02241d] transition-all" href="#">Privacy Protocol</a>
+<a class="opacity-80 hover:opacity-100 hover:text-[#02241d] transition-all" href="#">Coordinate Registry</a>
+<a class="opacity-80 hover:opacity-100 hover:text-[#02241d] transition-all" href="#">System Status</a>
+</div>
+</footer>
+</body></html>

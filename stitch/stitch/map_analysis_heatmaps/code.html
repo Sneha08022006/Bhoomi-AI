@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bhoomi-AI | Map Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#2b1c03",
+                    "on-secondary-container": "#5a647c",
+                    "surface-bright": "#f8faf9",
+                    "on-primary-fixed": "#002019",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#271902",
+                    "secondary-fixed": "#d7e2ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#e1e3e2",
+                    "secondary-fixed-dim": "#bbc6e2",
+                    "inverse-on-surface": "#eff1f0",
+                    "primary-fixed": "#c7eade",
+                    "primary-container": "#1a3a32",
+                    "tertiary-fixed": "#fcdeb6",
+                    "primary": "#02241d",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#2d4d44",
+                    "tertiary-container": "#433115",
+                    "on-tertiary-fixed-variant": "#574426",
+                    "on-secondary-fixed": "#101b30",
+                    "surface-container-high": "#e6e9e8",
+                    "outline": "#717975",
+                    "surface-tint": "#45655b",
+                    "inverse-primary": "#abcec2",
+                    "surface-container-highest": "#e1e3e2",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#d7e2ff",
+                    "surface-container": "#eceeed",
+                    "on-tertiary-container": "#b29974",
+                    "inverse-surface": "#2e3131",
+                    "background": "#f8faf9",
+                    "on-background": "#191c1c",
+                    "outline-variant": "#c1c8c4",
+                    "surface-dim": "#d8dad9",
+                    "on-surface": "#191c1c",
+                    "primary-fixed-dim": "#abcec2",
+                    "surface": "#f8faf9",
+                    "on-surface-variant": "#414846",
+                    "tertiary-fixed-dim": "#dec29b",
+                    "on-primary-container": "#82a499",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f2f4f3",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#545e76",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#3c475d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Public Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .heatmap-overlay {
+            background: radial-gradient(circle at 40% 30%, rgba(186, 26, 26, 0.4) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 60%, rgba(252, 222, 182, 0.3) 0%, transparent 35%),
+                        radial-gradient(circle at 20% 80%, rgba(186, 26, 26, 0.5) 0%, transparent 30%);
+        }
+        .tonal-shift-no-borders {
+            border: none !important;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#eceeed] dark:bg-slate-900 flex flex-col py-8 z-[60] font-['Public_Sans'] tracking-tight">
+<div class="px-6 mb-10">
+<h1 class="text-xl font-bold tracking-tighter text-[#02241d] dark:text-white uppercase">Bhoomi-AI</h1>
+<p class="text-[0.65rem] tracking-[0.1em] text-[#717975] uppercase mt-1">Sovereign Earth Intelligence</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-6 py-3 text-[#717975] dark:text-slate-400 hover:bg-[#e1e3e2] dark:hover:bg-slate-800 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center px-6 py-3 text-[#02241d] dark:text-white font-bold border-r-4 border-[#02241d] dark:border-[#1a3a32] bg-[#f2f4f3] dark:bg-slate-800 transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined mr-3">map</span>
+<span class="text-sm">Map Analysis</span>
+</a>
+<a class="flex items-center px-6 py-3 text-[#717975] dark:text-slate-400 hover:bg-[#e1e3e2] dark:hover:bg-slate-800 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-3">notifications_active</span>
+<span class="text-sm">Alerts</span>
+</a>
+<a class="flex items-center px-6 py-3 text-[#717975] dark:text-slate-400 hover:bg-[#e1e3e2] dark:hover:bg-slate-800 transition-colors duration-200 group" href="#">
+<span class="material-symbols-outlined mr-3">description</span>
+<span class="text-sm">Reports</span>
+</a>
+<a class="flex items-center px-6 py-3 text-[#717975] dark:text-slate-400 hover:bg-[#e1e3e2] dark:hover:bg-slate-800 transition-colors duration-200 group mt-auto" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="text-sm">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-50 bg-[#f8faf9]/60 backdrop-blur-xl flex justify-between items-center px-12 transition-all duration-200">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="w-full bg-transparent border-none border-b border-outline/30 focus:ring-0 focus:border-primary py-2 pl-10 text-sm font-['Inter']" placeholder="Search coordinates or land registry ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="text-[#717975] hover:text-[#02241d] transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-[#717975] hover:text-[#02241d] transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="h-8 w-px bg-outline-variant/30"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden lg:block">
+<p class="text-xs font-bold text-primary leading-none">Admin_Unit_04</p>
+<p class="text-[10px] text-outline uppercase tracking-wider">Level 4 Access</p>
+</div>
+<img class="w-10 h-10 rounded-lg object-cover grayscale brightness-90" data-alt="Professional portrait of a male administrator in a clean minimalist architectural setting with neutral tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEth3RvRO6G-XoqVuuhWtpt4yIWQ_rH7qGZmYtP-KE5JvpuU2l82J6Cday0BBoI_ckKe7iUgiFvwTd2I5qAX3ihaHKoBlem0aDpcyTR2UZM1FH1-EgqokNTb1Bm4KZZK527G3ttSEbBCjOqZ0_WET1Rpw0IQ5xH0yQ79AYHesWKOCtn9W60KYctgo_e4XlsaF1aGy6eBUaVRsov6uvv8HNlGRh0sOLdvZnvPuK0MST-eErvak-9jjWNQhAE3KEHJakHVuKxsHc_7k"/>
+</div>
+</div>
+</header>
+<!-- Main Map Canvas -->
+<main class="ml-64 pt-16 h-screen relative bg-surface">
+<!-- Satellite Map Layer -->
+<div class="absolute inset-0 z-0 overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[20%] brightness-[0.85]" data-alt="High resolution satellite aerial view of rural terrain with winding rivers and diverse agricultural land parcels" data-location="Global South" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFiFr_d5blLeiRehLkdyJtbRQZp5V5TKnjGR9E3MevYjJ5LLHjhE6ruKM1xHcKkM9Vajw2Lh0SLWosiGObFa9xjTwwCQnlxvbTUBRb4P-RyTjYN4kdaHcC3QNSEH4K-b004cZX-uB581eD3po5KfoIxC_ayiPrW6IphrbGhIrdixyvJ5ezlafJUAd2hh7LwP7UNU89ZuCMIbwnuV2kc92B7Uqcgv-CaHZnvuc4eN2pdQZcKeQ-ZDj8sBH3mn0lhahZ-XTNN5KMR9M"/>
+<!-- Predictive Heatmap Overlay -->
+<div class="absolute inset-0 heatmap-overlay mix-blend-multiply opacity-70"></div>
+</div>
+<!-- Asymmetric Floating Controls -->
+<div class="absolute left-8 top-8 z-10 w-80 space-y-6 pointer-events-none">
+<!-- Data Dossier Card -->
+<div class="pointer-events-auto bg-surface-container-lowest/90 backdrop-blur-md p-6 rounded-lg shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-start mb-6">
+<div>
+<span class="text-[10px] font-bold text-outline tracking-widest uppercase">Analysis Region</span>
+<h2 class="font-headline text-2xl font-extrabold tracking-tighter text-primary">Sector 7-Gamma</h2>
+</div>
+<span class="bg-error-container text-on-error-container text-[10px] px-2 py-1 font-bold rounded uppercase">High Risk</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<span class="text-xs text-outline">Dispute Probability</span>
+<span class="text-lg font-bold text-error">87.4%</span>
+</div>
+<div class="w-full h-1 bg-surface-container-high overflow-hidden">
+<div class="bg-error h-full" style="width: 87.4%"></div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div class="border-l-2 border-primary pl-3">
+<p class="text-[10px] text-outline uppercase tracking-wider">Hectares</p>
+<p class="font-bold text-primary tabular-nums">4,281.04</p>
+</div>
+<div class="border-l-2 border-secondary pl-3">
+<p class="text-[10px] text-outline uppercase tracking-wider">Coordinates</p>
+<p class="font-bold text-primary tabular-nums">42.34N 12.87E</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Layer Controls Side Panel -->
+<div class="pointer-events-auto bg-surface-container-lowest/90 backdrop-blur-md p-6 rounded-lg shadow-sm border border-outline-variant/10">
+<h3 class="text-xs font-bold text-primary mb-4 flex items-center">
+<span class="material-symbols-outlined text-sm mr-2">layers</span>
+                    Layer Controls
+                </h3>
+<div class="space-y-2">
+<button class="w-full flex items-center justify-between px-3 py-2 bg-primary text-on-primary rounded text-xs transition-all">
+<span class="flex items-center">
+<span class="material-symbols-outlined text-sm mr-3">thermostat</span>
+                            Predictive Heatmap
+                        </span>
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2 hover:bg-surface-container-high text-on-surface-variant rounded text-xs transition-colors">
+<span class="flex items-center">
+<span class="material-symbols-outlined text-sm mr-3">terrain</span>
+                            Topography
+                        </span>
+<span class="material-symbols-outlined text-sm">visibility_off</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2 hover:bg-surface-container-high text-on-surface-variant rounded text-xs transition-colors">
+<span class="flex items-center">
+<span class="material-symbols-outlined text-sm mr-3">eco</span>
+                            Vegetation Index
+                        </span>
+<span class="material-symbols-outlined text-sm">visibility_off</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2 hover:bg-surface-container-high text-on-surface-variant rounded text-xs transition-colors">
+<span class="flex items-center">
+<span class="material-symbols-outlined text-sm mr-3">grid_view</span>
+                            Legal Boundaries
+                        </span>
+<span class="material-symbols-outlined text-sm">visibility_off</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Timeline Toggle (Bottom Floating) -->
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 w-full max-w-2xl px-8">
+<div class="bg-surface-container-lowest/90 backdrop-blur-xl p-4 rounded shadow-sm border border-outline-variant/10">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+<span class="text-xs font-bold text-primary tracking-tight">Timeline Comparison</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-[10px] text-outline uppercase font-medium">Historical Delta: +14.2% Risk</span>
+</div>
+</div>
+<div class="relative h-12 flex items-center px-4">
+<!-- Custom Timeline Slider -->
+<div class="absolute inset-x-4 h-[2px] bg-outline-variant/40"></div>
+<div class="absolute left-4 w-3/4 h-[2px] bg-primary"></div>
+<div class="flex justify-between w-full relative">
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-surface border-2 border-outline-variant z-10"></div>
+<span class="text-[9px] mt-2 text-outline font-bold">2018</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-surface border-2 border-outline-variant z-10"></div>
+<span class="text-[9px] mt-2 text-outline font-bold">2020</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-surface border-2 border-outline-variant z-10"></div>
+<span class="text-[9px] mt-2 text-outline font-bold">2022</span>
+</div>
+<div class="flex flex-col items-center relative">
+<div class="w-5 h-5 rounded-full bg-primary border-4 border-surface shadow-md z-20 -mt-1"></div>
+<span class="text-[9px] mt-2 text-primary font-black">PRESENT</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side Insight Panel -->
+<div class="absolute right-8 top-8 z-10 w-72 space-y-4">
+<div class="bg-surface-container-lowest/95 backdrop-blur-md p-5 rounded-lg border border-outline-variant/10">
+<div class="flex items-center gap-2 mb-4 text-tertiary">
+<span class="material-symbols-outlined text-sm">smart_toy</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">AI Insights</span>
+</div>
+<p class="text-sm text-primary leading-relaxed font-medium">
+                    Significant encroachment detected in <span class="bg-tertiary-fixed text-on-tertiary-fixed px-1">Zone C-4</span>. Satellite imaging confirms unauthorized structure development aligned with recent 2024 dispute filings.
+                </p>
+<div class="mt-4 pt-4 border-t border-outline-variant/20">
+<button class="w-full bg-primary text-on-primary py-2 text-[10px] font-bold uppercase tracking-widest rounded hover:bg-primary-container transition-all">
+                        Generate Dossier
+                    </button>
+</div>
+</div>
+<!-- Mini Map Legend -->
+<div class="bg-surface-container-lowest/95 backdrop-blur-md p-4 rounded-lg border border-outline-variant/10">
+<h4 class="text-[10px] font-bold text-outline uppercase tracking-widest mb-3">Risk Legend</h4>
+<div class="space-y-2">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 bg-error rounded-sm"></div>
+<span class="text-[10px] text-on-surface-variant font-medium">Critical Conflict</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 bg-tertiary-fixed-dim rounded-sm"></div>
+<span class="text-[10px] text-on-surface-variant font-medium">Potential Dispute</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 bg-primary-container rounded-sm"></div>
+<span class="text-[10px] text-on-surface-variant font-medium">Stable Zone</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="fixed bottom-0 right-0 w-[calc(100%-16rem)] bg-[#f8faf9] py-4 px-12 border-t border-[#c1c8c4]/15 flex justify-between items-center z-[60]">
+<div class="flex items-center gap-4">
+<span class="font-bold text-[#1a3a32] text-[0.7rem]">Bhoomi-AI</span>
+<span class="text-[#717975] text-[0.7rem] uppercase tracking-[0.05em] font-['Inter']">© 2024 Bhoomi-AI Sovereign Intelligence. Restricted Access.</span>
+</div>
+<div class="flex gap-6">
+<a class="text-[0.7rem] uppercase tracking-[0.05em] text-[#717975] opacity-80 hover:opacity-100 hover:text-[#02241d] font-['Inter']" href="#">Privacy Protocol</a>
+<a class="text-[0.7rem] uppercase tracking-[0.05em] text-[#717975] opacity-80 hover:opacity-100 hover:text-[#02241d] font-['Inter']" href="#">Coordinate Registry</a>
+<a class="text-[0.7rem] uppercase tracking-[0.05em] text-[#717975] opacity-80 hover:opacity-100 hover:text-[#02241d] font-['Inter']" href="#">System Status</a>
+</div>
+</footer>
+</body></html>
